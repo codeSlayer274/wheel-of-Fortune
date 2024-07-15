@@ -1,55 +1,28 @@
-window.onload =(function() {
+const fullDegree = 360;
+let addedDegree = Math.floor(Math.random() * fullDegree);
+const numberOfLaps = 2;
+let isStarted = false;
+let sec;
 
-    let hr = document.getElementById("hour");
-    let min = document.getElementById("min");
-    let sec = document.getElementById("sec");
+function displayTime() {
+    sec = document.getElementById("sec");
+    addedDegree = Math.floor(Math.random() * fullDegree);
+    let sRotation = 0;
 
-
-    function displayTime() {
-        let date = new Date();
-
-        let hh = date.getHours();
-        let mm = date.getMinutes();
-        let ss = date.getSeconds();
-
-        let hRotation = 30 * hh + mm / 2;
-        let mRotation = 6 * mm;
-        let sRotation = 6 * ss;
-
-
-        hr.style.transform = `rotate(${hRotation}deg)`;
-        min.style.transform = `rotate(${mRotation}deg)`;
+    let intervalId = setInterval(function () {
+        sRotation = sRotation + 2;
         sec.style.transform = `rotate(${sRotation}deg)`;
+        if (sRotation >= fullDegree * numberOfLaps + addedDegree) {
+            clearInterval(intervalId);
+            isStarted = false;
+        }
+    }, 1)
+}
+
+function start() {
+    if (isStarted === true) {
+        return;
     }
-
-    setInterval(displayTime, 1000);
-
-});
-
-
-
-
-
-// const hour = document.getElementById('hour');
-// const minute = document.getElementById('min');
-// const second = document.getElementById('sec');
-//
-// function time(){
-//     let date = new Date();
-//     let sec = date.getSeconds();
-//     let secDegree = ((sec/60) * 360) + 90;
-//     second.style.transform = `rotate(${secDegree}deg)`;
-//     second.innerText = secDegree;
-//
-//     let min = date.getMinutes();
-//     let minDegree = ((min/60) * 360) + 90;
-//     minute.style.transform = `rotate(${minDegree}deg)`;
-//     minute.innerText = minDegree ;
-//
-//     let hr = date.getHours();
-//     let hourDegree = ((min/12) * 360) + 90;
-//     hour.style.transform = `rotate(${hourDegree}deg)`;
-//     hour.innerText = hr;
-// }
-//
-// setInterval(time, 1000);
+    isStarted = true;
+    displayTime();
+}

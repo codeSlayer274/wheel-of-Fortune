@@ -52,7 +52,7 @@ body {
     background: #ffffff;
 }
 
-.hand{
+.hand {
     position: absolute;
     display: flex;
     justify-content: center;
@@ -63,6 +63,15 @@ body {
     position: absolute;
     background: var(--clr);
     width: 4px;
-    height: 70px;
+    height: 125px;
     border-radius: 8px;
+}
+
+.button {
+    position: absolute;
+    bottom: 50px;
+    color: black;
+    width: 190px;
+    height: 55px;
+    border-radius: 20px;;
 }
